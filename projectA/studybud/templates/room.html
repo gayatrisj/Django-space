@@ -29,10 +29,14 @@
 </style>
 </head>
 <body>
-    {% include 'navbar.html' %}
+  {% extends 'main.html' %}
+  {% block content %}
   <div class="container">
     <h1>ROOM</h1>
+    <p> {{rooms}}</p>
+    
     <!-- Other content can be added here -->
-  </div>
+  </div>{% endblock content %}
+
 </body>
 </html>
