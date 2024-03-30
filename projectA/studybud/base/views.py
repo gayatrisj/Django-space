@@ -1,12 +1,6 @@
 from django.shortcuts import render
 
-
-
-def home(request):
-    return render(request,"home.html")
-
-def room(request):
-    rooms = [
+rooms = [
     {'id': 1, 'name': 'lets learn web3'},
     {'id': 2, 'name': 'python enthusiasts'},
     {'id': 3, 'name': 'data science discussions'},
@@ -18,4 +12,11 @@ def room(request):
     {'id': 9, 'name': 'blockchain innovations'},
     {'id': 10, 'name': 'agile project management'}
 ]
-    return render(request, "room.html", {'rooms': rooms})
+
+
+def home(request):
+    return render(request,"home.html", {'rooms': rooms})
+
+def room(request):
+
+    return render(request, "room.html")

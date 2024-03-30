@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home Page</title>
+<title>Room Page</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -30,21 +30,13 @@
 </head>
 <body>
   {% extends 'main.html' %}
-  
-   {% block content%}
-
+  {% block content %}
   <div class="container">
-    <h1>HOME PAGE</h1>
+    <h1>ROOM</h1>
+   
+   
     <!-- Other content can be added here -->
-    <div>
-      <div>
-       {% comment %} {% for room in rooms %}
-           <p>{{room.id}} - {{room.name}}</p>
+  </div>{% endblock content %}
 
-       {% endfor %} {% endcomment %}
-      </div>
-   </div>
- </div>
-  {% endblock  %}
 </body>
 </html>
