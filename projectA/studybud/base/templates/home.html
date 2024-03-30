@@ -6,25 +6,65 @@
 <title>Home Page</title>
 <style>
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f2f2f2;
+    background-color: #f9f9f9;
   }
 
   .container {
     text-align: center;
     margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }
 
   h1 {
-    font-size: 48px;
+    font-size: 36px;
     color: #333;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    border-bottom: 2px solid #333;
-    padding-bottom: 20px;
     margin-bottom: 30px;
+  }
+
+  .room-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .room-item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .room-item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .room-item h3 {
+    font-size: 24px;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+    background-color: #f2f2f2;
+  }
+
+  .room-item p {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+    padding: 0 20px 20px;
+  }
+
+  .room-item small {
+    display: block;
+    font-size: 14px;
+    color: #999;
+    padding: 0 20px 20px;
   }
 </style>
 </head>
@@ -33,18 +73,22 @@
   
    {% block content%}
 
-  <div class="container">
-    <h1>HOME PAGE</h1>
-    <!-- Other content can be added here -->
-    <div>
-      <div>
-        {% for room in rooms %}
-        <p>{{room.id}}. <a href="{% url 'room' room.id %}">{{room.name}}</a></p>
-         {% endfor %}
-    
-      </div>
-   </div>
- </div>
+  
+<div class="container">
+  <h1>Explore Chat Rooms</h1>
+
+  <ul class="room-list">
+    {% for room in rooms %}
+    <li class="room-item">
+      <h3><a href="{% url 'room' room.id %}">{{ room.name }}</a></h3>
+      <p>Hosted by: @{{ room.host }}</p>
+      <small>Topic: {{ room.topic }}</small>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+
   {% endblock  %}
 </body>
 </html>
