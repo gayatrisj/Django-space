@@ -6,6 +6,7 @@
 <title>StudyBud</title>
 </head>
 <body>
+    {% csrf_token %}
     {% include 'navbar.html' %}
     {% block content %}
 
