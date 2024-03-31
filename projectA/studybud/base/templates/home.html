@@ -71,11 +71,11 @@
 <body>
   {% extends 'main.html' %}
   
-   {% block content%}
+   {% block content %}
 
   
 <div class="container">
-  <h1>Explore Chat Rooms</h1>
+  <a href="{% url 'create-room' %}"> CreateChat Rooms</a>
 
   <ul class="room-list">
     {% for room in rooms %}
