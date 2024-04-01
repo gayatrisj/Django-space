@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.db.models import Q
 
-from .models import Room
+from .models import Room, Topic
 from .forms import RoomForm
 
 # rooms = [
@@ -19,9 +20,17 @@ from .forms import RoomForm
 
 
 def home(request):
-    rooms = Room.objects.all()
-    print(rooms)
-    return render(request,"home.html", {'rooms': rooms})
+    q = request.GET.get('q') if request.GET.get('q') != None else ""
+    rooms = Room.objects.filter(
+        Q(topic__name__icontains=q)|
+        Q(name__icontains=q) | 
+         Q(description__icontains=q)
+        ) 
+    topic = Topic.objects.all()
+    rooms_count = rooms.count()
+
+    context = {'rooms': rooms, 'topics': topic, 'room_count':rooms.count()}
+    return render(request,"home.html", context)
 
 def room(request,num):
     room = Room.objects.get(id=num)

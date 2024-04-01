@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-88y5&5@jcw*b=og%30jr0um*^%%&zd8hm)29+&!%&!a+w$s0e9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["8000-gayatrisj-djangospace-qi4m2fgaxei.ws-us110.gitpod.io"]
+ALLOWED_HOSTS = ["8000-gayatrisj-djangospace-qi4m2fgaxei.ws-us110.gitpod.io",
+"8000-sivajisj-djangospace-bp4bylind7m.ws-us110.gitpod.io"]
 
 
 # Application definition
@@ -126,4 +127,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-gayatrisj-djangospace-qi4m2fgaxei.ws-us110.gitpod.io',
+    "https://8000-sivajisj-djangospace-bp4bylind7m.ws-us110.gitpod.io"
 ]
