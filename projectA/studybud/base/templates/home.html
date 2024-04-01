@@ -75,7 +75,7 @@
 
   
 <div class="container">
-  <a href="{% url 'create-room' %}"> CreateChat Rooms</a>
+  <a href="{% url 'create-room' %}"> CreateChat Room</a>
 
   <ul class="room-list">
     {% for room in rooms %}
@@ -83,6 +83,9 @@
       <h3><a href="{% url 'room' room.id %}">{{ room.name }}</a></h3>
       <p>Hosted by: @{{ room.host }}</p>
       <small>Topic: {{ room.topic }}</small>
+      <button>  <a href="{% url 'update-room' room.id %}"> Edit Chat-Room</a>
+      <button>  <a href="{% url 'delete-room' room.id %}"> Delete Chat-Room</a>
+      </button>
     </li>
     {% endfor %}
   </ul>
