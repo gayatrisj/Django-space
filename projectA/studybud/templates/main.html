@@ -8,9 +8,24 @@
 <body>
     {% csrf_token %}
     {% include 'navbar.html' %}
+    
+
+    
+
+
     {% block content %}
 
 
     {% endblock %}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
 </body>
 </html>

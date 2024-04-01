@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.db.models import Q
-
+from django.contrib import messages
+from django.contrib.auth.models import User
 from .models import Room, Topic
 from .forms import RoomForm
 
@@ -17,6 +17,22 @@ from .forms import RoomForm
 #     {'id': 9, 'name': 'blockchain innovations'},
 #     {'id': 10, 'name': 'agile project management'}
 # ]
+
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(request, "User does not exist")
+            
+
+
+
+    context = {'messages': messages.get_messages(request)}
+    return render(request, 'login_reg.html', context)
 
 
 def home(request):
