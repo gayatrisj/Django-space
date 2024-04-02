@@ -41,8 +41,12 @@
   <h3><a href="{% url 'room' room.id %}">{{ room.name }}</a></h3>
   <p>Hosted by: @{{ room.host }}</p>
   <small>Topic: {{ room.topic }}</small>
+  {% if room.host == request.user %}
   <button>  <a href="{% url 'update-room' room.id %}"> Edit Chat-Room</a>
   <button>  <a href="{% url 'delete-room' room.id %}"> Delete Chat-Room</a>
+   {% endif %}
+
+  
   </button>
   <hr>
  </div>

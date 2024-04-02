@@ -8,6 +8,17 @@
 <body>
     {% csrf_token %}
     {% include 'navbar.html' %}
+
+    <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+           <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    
+    </div>
     
 
     
@@ -18,14 +29,7 @@
 
     {% endblock %}
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
+ 
 
 </body>
 </html>

@@ -64,8 +64,13 @@
         <input type="text" placeholder="Search room..." name="q">
         
       </form>
-      <a href="{% url 'login' %}">Login</a>
-    </div>
+      {% if request.user.is_authenticated %}
+       <a href="{% url 'logout' %}"><button>Logout</button></a>
+
+      {% else %}
+        <a href="{% url 'login' %}"><button>Login</button></a>
+      {% endif %}
+      </div>
   </div>
   
 </body>
