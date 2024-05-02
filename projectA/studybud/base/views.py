@@ -29,7 +29,7 @@ def loginPage(request):
         try:
             user = User.objects.get(username=username)
             # Here you need to add logic to authenticate the user with the provided password
-            # For example:
+            # For example: 
             # if user.check_password(password):
             #     # Authentication successful
             # else:
