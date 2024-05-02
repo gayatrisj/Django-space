@@ -1,7 +1,13 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from .models import Room, Topic
+from django.http import HttpResponse
 from .forms import RoomForm
+
 # rooms = [
 #     {'id': 1, 'name': 'Advanced Python Programming'},
 #     {'id': 2, 'name': 'Mastering ReactJS'},
@@ -20,9 +26,30 @@ def home(request):
         )
     topics = Topic.objects.all()
 
-    context = {'rooms':rooms, 'topics':topics,'room_count':rooms.count}
+    context = {'rooms':rooms, 'topics':topics,'room_count':rooms.count()}
     return render(request,'base/home.html',context)
 
+
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try :
+            user = User.objects.get(username=username)
+            print(user)
+        except User.DoesNotExist:
+            messages.error(request, "User does not exist")
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, "Authentication failed")
+            
+    context = {}
+    return render(request,'base/login_reg.html',context)
 def room(request,pk):
     room = Room.objects.get(id=pk)
 
