@@ -63,6 +63,19 @@ def loginPage(request):
     context = {'page': page}
     return render(request,'base/login_reg.html',context)
 
+def userProfile(request,pk):
+    user = User.objects.get(id=pk)
+    rooms = user.room_set.all() #Room.objects.filter(participants=user)
+    room_messages = user.message_set.all()
+    topics = Topic.objects.all() #Topic.objects.filter(participants=user
+    context = {
+        'user':user,
+        'rooms':rooms,
+        'room_messages':room_messages,
+        'topics':topics
+        }
+    return render(request,'base/profile.html',context)
+
 def logoutUser(request):
     logout(request)
     return redirect('home')
@@ -106,7 +119,9 @@ def createRoom(request):
     if request.method == 'POST':
         form = RoomForm(request.POST)
         if form.is_valid():
-            form.save()
+            room = form.save(commit=False)
+            room.host = request.user
+            room.save()
             return redirect('home')
 
     context = {'form': form}
