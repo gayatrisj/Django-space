@@ -11,37 +11,14 @@
   </head>
 
   <body>
-    {% csrf_token %}
-    {% include 'navbar.html' %}
-
-    {% if messages %}
+    {% csrf_token %} {% include 'navbar.html' %} {% if messages %}
     <ul class="messages">
-        {% for message in messages %}
-       <li>{{ message }}</li>
-        {% endfor %}
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
     </ul>
-    {% endif %}
+    {% endif %} {% block content %} {% endblock %}
 
-    
-    {% block content %}
-
-    {% endblock %}
-
-
-
-   
-    
     <script src="{% static 'js/script.js' %}"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
