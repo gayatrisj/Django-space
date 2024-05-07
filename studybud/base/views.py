@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import Room, Topic, Message
 from django.http import HttpResponse
-from .forms import RoomForm
+from .forms import RoomForm, UserForm
 
 # rooms = [
 #     {'id': 1, 'name': 'Advanced Python Programming'},
@@ -61,7 +61,7 @@ def loginPage(request):
             messages.error(request, "Authentication failed")
             
     context = {'page': page}
-    return render(request,'base/login_reg.html',context)
+    return render(request,'base/login.html',context)
 
 def userProfile(request,pk):
     user = User.objects.get(id=pk)
@@ -95,7 +95,7 @@ def registerPage(request):
             messages.error(request, "An error occurred")
     else:
         form = UserCreationForm()
-    return render(request, 'base/login_reg.html', {'form': form, 'page': page})
+    return render(request, 'base/login.html', {'form': form, 'page': page})
 
 def room(request,pk):
     room = Room.objects.get(id=pk)
@@ -198,3 +198,17 @@ def deleteActivity(request, pk):
         return redirect('home')
     
     return render(request, 'base/delete.html', {'obj': message})
+
+
+@login_required(login_url='login')
+def updateUser(request):
+    user = request.user
+    form = UserForm(instance=user)
+    context = {'form': form}#{'form': form, 'user': user}
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user-profile',pk=user.id)
+
+    return render(request, 'base/update-user.html',context)
