@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7wu^4&y(i4y@9r5xzu+=5$7&jfs*d#9%^exp9h2oyf97t9yrnk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-sivajisj-djangospace-m8gsf61cwgw.ws-us110.gitpod.io']
 
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'base.apps.BaseConfig'
+    'base.apps.BaseConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
