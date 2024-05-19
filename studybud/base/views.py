@@ -27,13 +27,11 @@ def home(request):
     topics = Topic.objects.all()[0:5]
     room_messages = Message.objects.all()
     room_messages = Message.objects.filter(Q(room__name__icontains=q))
-
     context = {
         'rooms':rooms,
          'topics':topics,
          'room_count':rooms.count(),
          'room_messages':room_messages
-
          }
     return render(request,'base/home.html',context)
 
@@ -45,7 +43,6 @@ def loginPage(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-
         try :
             user = User.objects.get(email=email)
             print(user)
@@ -66,7 +63,7 @@ def userProfile(request,pk):
     user = User.objects.get(id=pk)
     rooms = user.room_set.all() #Room.objects.filter(participants=user)
     room_messages = user.message_set.all()
-    topics = Topic.objects.all() #Topic.objects.filter(participants=user
+    topics = Topic.objects.all() #Topic.objects.filter(participants=user)
     context = {
         'user':user,
         'rooms':rooms,
