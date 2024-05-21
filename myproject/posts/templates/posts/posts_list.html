@@ -13,10 +13,13 @@ Posts
 
    <div>
     <hr>
-    {{ post.date }}
-   <li> {{ post.title }} </li>
-   <li> {{ post.body }} </li>
-   <li> {{ post.slug }} </li>
+    <h3>
+      <a href="{% url 'posts:page' slug=post.slug %}">
+         {{ post.title }}
+      </a>
+   </h3>
+   <p> {{ post.date }} </p>
+   <p> {{ post.body }} </p>
    </div>
    {% endfor %}
 </div>
