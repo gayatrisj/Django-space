@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Post
+from django.contrib.auth.decorators import login_required
 from .forms import PostForm
 from django.http import HttpResponse
 # Create your views here.
@@ -13,7 +14,8 @@ def post_page(request, slug):
     post = Post.objects.get(slug=slug)
     context = {'post': post}
     return render(request, 'posts/post_page.html',context)
-
+    
+@login_required(login_url='/users/login/')
 def post_new(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
