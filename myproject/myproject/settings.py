@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@6kz*k^+vcqewv108szj1@=180m=rj2-x8fx5se+zat4-uqcn@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-sivajisj-djangospace-m8gsf61cwgw.ws-us114.gitpod.io']
+ALLOWED_HOSTS = ['8000-gayatrisj-djangospace-0zfxinhi1nh.ws-us114.gitpod.io']
 
 
 # Application definition
@@ -131,5 +131,5 @@ MEDIA_ROOT = BASE_DIR / 'static/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-sivajisj-djangospace-m8gsf61cwgw.ws-us114.gitpod.io'
+    'https://8000-gayatrisj-djangospace-0zfxinhi1nh.ws-us114.gitpod.io'
 ]
