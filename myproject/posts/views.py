@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Post
 from .forms import PostForm
 from django.http import HttpResponse
@@ -16,12 +16,10 @@ def post_page(request, slug):
 
 def post_new(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-            return redirect('posts:list')
+            form.save()
+            return redirect('posts:list')  # Redirect to the appropriate view after saving
     else:
         form = PostForm()
     context = {'form': form}

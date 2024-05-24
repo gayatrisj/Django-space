@@ -6,9 +6,11 @@ Create Post
 
 {% block content %}
 <h1>Create a new Post</h1>
-<form action="{% url 'new-post' %}" class="form-width-validation" method="POST">
+<form action="" class="form-width-validation" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
-    {{ form }}
+    {{form}}
+    {{ form.errors }}
+
     <button class="form-submit">Submit</button>
 </form>
 {% endblock content %}
