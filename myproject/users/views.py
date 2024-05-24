@@ -31,3 +31,8 @@ def login_view(request):
         form = AuthenticationForm()
     context = {'form': form}
     return render(request, 'users/login.html',context)
+
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('posts:list')
