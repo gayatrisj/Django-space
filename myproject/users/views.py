@@ -19,13 +19,14 @@ def register(request):
 def login_view(request):
     
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
         form =  AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request,user )
-            return redirect('posts:list')
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect('posts:list')
     
     else :
         form = AuthenticationForm()

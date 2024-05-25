@@ -6,7 +6,7 @@ Create Post
 
 {% block content %}
 <h1>Create a new Post</h1>
-<form action="" class="form-width-validation" enctype="multipart/form-data" method="POST">
+<form action="{% url 'posts:new-post' %}" class="form-width-validation" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
     {{form}}
     {{ form.errors }}

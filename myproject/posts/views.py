@@ -20,7 +20,9 @@ def post_new(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            newPost = form.save(commit=False)
+            newPost.author = request.user
+            newPost.save()
             return redirect('posts:list')  # Redirect to the appropriate view after saving
     else:
         form = PostForm()

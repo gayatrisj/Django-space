@@ -25,17 +25,16 @@
 
     {% if user.is_authenticated %}
    <a href="{% url 'posts:new-post' %}"> <span role='image' aria-label="User register" title="register"> 🆕</span></a> |
-
+   <form class="logout" action="{% url 'users:logout' %}" method="post">
+           {% csrf_token %}
+           <button class="logout-button" aria-label="User Logout" title="logout">👋</button>
+   </form>
+   <p>{{request.user.username}}</p> Logged in
+   {% else %}
+   <a href="{% url 'users:register' %}"> <span role='image' aria-label="User register" title="register"> 🚀</span></a> |
+   <a href="{% url 'users:login' %}"> <span role='image' aria-label="User login" title="login"> 🔒</span></a> |
    {% endif %}
-    <a href="{% url 'users:register' %}"> <span role='image' aria-label="User register" title="register"> 🚀</span></a> |
-    <a href="{% url 'users:login' %}"> <span role='image' aria-label="User login" title="login"> 🔒</span></a> |
-    <form class="logout" action="{% url 'users:logout' %}" method="post">
-            {% csrf_token %}
-            <button class="logout-button" aria-label="User Logout" title="logout">👋</button>
-    </form>
-{% if request.user.is_authenticated %}
- <p>{{request.user.username}}</p> Logged in
-{% endif %}
+
 
     </nav>
 
